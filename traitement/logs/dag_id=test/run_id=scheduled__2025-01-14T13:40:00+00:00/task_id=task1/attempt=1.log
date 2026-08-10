@@ -1,0 +1,31 @@
+[2025-01-14T13:41:02.520+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-14T13:41:02.561+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test.task1 scheduled__2025-01-14T13:40:00+00:00 [queued]>
+[2025-01-14T13:41:02.582+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test.task1 scheduled__2025-01-14T13:40:00+00:00 [queued]>
+[2025-01-14T13:41:02.583+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-14T13:41:02.612+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): task1> on 2025-01-14 13:40:00+00:00
+[2025-01-14T13:41:02.628+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=12834) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-01-14T13:41:02.631+0000] {standard_task_runner.py:72} INFO - Started process 12873 to run task
+[2025-01-14T13:41:02.634+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'test', 'task1', 'scheduled__2025-01-14T13:40:00+00:00', '--job-id', '77', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmpxmwt5pz8']
+[2025-01-14T13:41:02.637+0000] {standard_task_runner.py:105} INFO - Job 77: Subtask task1
+[2025-01-14T13:41:02.743+0000] {task_command.py:467} INFO - Running <TaskInstance: test.task1 scheduled__2025-01-14T13:40:00+00:00 [running]> on host 3215871494c5
+[2025-01-14T13:41:02.922+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='atou' AIRFLOW_CTX_DAG_ID='test' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2025-01-14T13:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-14T13:40:00+00:00'
+[2025-01-14T13:41:02.927+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-14T13:41:02.928+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-14T13:41:02.930+0000] {logging_mixin.py:190} INFO - Current task name:task1 state:running start_date:2025-01-14 13:41:02.562747+00:00
+[2025-01-14T13:41:02.931+0000] {logging_mixin.py:190} INFO - Dag name:test and current dag run status:running
+[2025-01-14T13:41:02.932+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-14T13:41:02.953+0000] {logging_mixin.py:190} INFO - MongoClient(host=['172.18.0.3:27017'], document_class=dict, tz_aware=False, connect=True)
+[2025-01-14T13:41:02.956+0000] {logging_mixin.py:190} INFO - Database(MongoClient(host=['172.18.0.3:27017'], document_class=dict, tz_aware=False, connect=True), 'test_***')
+[2025-01-14T13:41:02.958+0000] {logging_mixin.py:190} INFO - Collection(Database(MongoClient(host=['172.18.0.3:27017'], document_class=dict, tz_aware=False, connect=True), 'test_***'), '***')
+[2025-01-14T13:41:02.966+0000] {logging_mixin.py:190} INFO - {'_id': ObjectId('678665c689623ae132931f32')}
+[2025-01-14T13:41:02.968+0000] {logging_mixin.py:190} INFO - {'_id': ObjectId('678667e089623ae132931f34'), 'toto': 2}
+[2025-01-14T13:41:02.970+0000] {python.py:240} INFO - Done. Returned value was: []
+[2025-01-14T13:41:03.017+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-14T13:41:03.019+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=test, task_id=task1, run_id=scheduled__2025-01-14T13:40:00+00:00, execution_date=20250114T134000, start_date=20250114T134102, end_date=20250114T134103
+[2025-01-14T13:41:03.038+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-01-14T13:41:03.039+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-01-14T13:41:03.040+0000] {logging_mixin.py:190} INFO - Dag name:test queued_at:2025-01-14 13:41:00.618211+00:00
+[2025-01-14T13:41:03.041+0000] {logging_mixin.py:190} INFO - Task hostname:3215871494c5 operator:PythonOperator
+[2025-01-14T13:41:03.064+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-14T13:41:03.133+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-01-14T13:41:03.137+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

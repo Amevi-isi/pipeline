@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  mongodb-source:
+    tty: true
+    image: mongo:latest
+    container_name: mongodb1
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb1_data:/source
+    networks:
+      - pipeline
+
+  dbclient-source:
+    tty: true
+    build: .
+    container_name: dbclient1
+    volumes:
+      - python_data:/source
+    networks:
+      - pipeline
+    depends_on:
+      - mongodb-source
+    restart: always
+
+networks:
+  pipeline:
+    name: pipeline
+    driver: bridge
+
+volumes:
+  mongodb1_data:
+  python_data:

@@ -1,0 +1,206 @@
+version: "3"
+services:
+  server:
+    image: redash/redash:preview
+    container_name: redash
+    depends_on:
+      init-server:
+        condition: service_completed_successfully
+    restart: always
+    environment:
+      PYTHONUNBUFFERED: "0"
+      REDASH_LOG_LEVEL: "INFO"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "xuiCIAEfejj05ZUzQ0odb5pwBttXUkE4"
+      REDASH_SECRET_KEY: "9emtXqroCnNhFiETBiFXoQvA4PH0nQuP"
+      REDASH_DATABASE_URL: "postgresql://postgres:YKK1KkvPb4ula2HRXlnd7z7n6rVbWKSq@postgres/postgres"
+      REDASH_RATELIMIT_ENABLED: "false"
+      REDASH_MAIL_DEFAULT_SENDER: "redash@example.com"
+      REDASH_MAIL_SERVER: "email"
+      REDASH_MAIL_PORT: 1025
+      REDASH_ENFORCE_CSRF: "true"
+      REDASH_GUNICORN_TIMEOUT: 60
+      REDASH_CONTENT_SECURITY_POLICY: "default-src * 'unsafe-inline' 'unsafe-eval'; font-src * ; frame-ancestors https://xportal.sandbox.gouv.tg https://service-public.gouv.tg ; frame-src * ;"
+    ports:
+      - "5001:5000"
+    volumes:
+      - redash_data:/app/redash
+    networks:
+      - pipeline
+    platform: linux/amd64
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/ping"]
+      interval: 1s
+      timeout: 2s
+      retries: 30
+
+  init-server:
+    image: redash/redash:preview
+    container_name: redash-init-server
+    depends_on:
+      - postgres
+      - redis
+    command:
+      - create_db
+    environment:
+      PYTHONUNBUFFERED: "0"
+      REDASH_LOG_LEVEL: "INFO"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "xuiCIAEfejj05ZUzQ0odb5pwBttXUkE4"
+      REDASH_SECRET_KEY: "9emtXqroCnNhFiETBiFXoQvA4PH0nQuP"
+      REDASH_DATABASE_URL: "postgresql://postgres:YKK1KkvPb4ula2HRXlnd7z7n6rVbWKSq@postgres/postgres"
+      REDASH_RATELIMIT_ENABLED: "false"
+      REDASH_MAIL_DEFAULT_SENDER: "redash@example.com"
+      REDASH_MAIL_SERVER: "email"
+      REDASH_MAIL_PORT: 1025
+      REDASH_ENFORCE_CSRF: "true"
+      REDASH_GUNICORN_TIMEOUT: 60
+    ports:
+      - "5001:5000"
+    networks:
+      - pipeline
+    platform: linux/amd64
+
+  scheduler:
+    image: redash/redash:preview
+    container_name: redash-scheduler
+    depends_on:
+      - redis
+    restart: always
+    command: scheduler
+    environment:
+      QUEUES: "celery"
+      WORKERS_COUNT: 1
+      PYTHONUNBUFFERED: "0"
+      REDASH_LOG_LEVEL: "INFO"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "xuiCIAEfejj05ZUzQ0odb5pwBttXUkE4"
+      REDASH_SECRET_KEY: "9emtXqroCnNhFiETBiFXoQvA4PH0nQuP"
+      REDASH_DATABASE_URL: "postgresql://postgres:YKK1KkvPb4ula2HRXlnd7z7n6rVbWKSq@postgres/postgres"
+      REDASH_RATELIMIT_ENABLED: "false"
+      REDASH_MAIL_DEFAULT_SENDER: "redash@example.com"
+      REDASH_MAIL_SERVER: "email"
+      REDASH_MAIL_PORT: 1025
+      REDASH_ENFORCE_CSRF: "true"
+      REDASH_GUNICORN_TIMEOUT: 60
+    networks:
+      - pipeline
+    platform: linux/amd64
+
+  worker:
+    image: redash/redash:preview
+    container_name: redash-worker
+    depends_on:
+      - redis
+    restart: always
+    command: worker
+    environment:
+      QUEUES: "scheduled_queries,schemas,periodic,emails,default"
+      WORKERS_COUNT: 6
+      PYTHONUNBUFFERED: "0"
+      REDASH_LOG_LEVEL: "INFO"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "xuiCIAEfejj05ZUzQ0odb5pwBttXUkE4"
+      REDASH_SECRET_KEY: "9emtXqroCnNhFiETBiFXoQvA4PH0nQuP"
+      REDASH_DATABASE_URL: "postgresql://postgres:YKK1KkvPb4ula2HRXlnd7z7n6rVbWKSq@postgres/postgres"
+      REDASH_RATELIMIT_ENABLED: "false"
+      REDASH_MAIL_DEFAULT_SENDER: "redash@example.com"
+      REDASH_MAIL_SERVER: "email"
+      REDASH_MAIL_PORT: 1025
+      REDASH_ENFORCE_CSRF: "true"
+      REDASH_GUNICORN_TIMEOUT: 60
+    networks:
+      - pipeline
+    platform: linux/amd64
+
+  adhoc-worker:
+    image: redash/redash:preview
+    container_name: redash-adhoc-worker
+    depends_on:
+      - redis
+    restart: always
+    command: worker
+    environment:
+      QUEUES: "queries"
+      WORKERS_COUNT: 2
+      PYTHONUNBUFFERED: "0"
+      REDASH_LOG_LEVEL: "INFO"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "xuiCIAEfejj05ZUzQ0odb5pwBttXUkE4"
+      REDASH_SECRET_KEY: "9emtXqroCnNhFiETBiFXoQvA4PH0nQuP"
+      REDASH_DATABASE_URL: "postgresql://postgres:YKK1KkvPb4ula2HRXlnd7z7n6rVbWKSq@postgres/postgres"
+      REDASH_RATELIMIT_ENABLED: "false"
+      REDASH_MAIL_DEFAULT_SENDER: "redash@example.com"
+      REDASH_MAIL_SERVER: "email"
+      REDASH_MAIL_PORT: 1025
+      REDASH_ENFORCE_CSRF: "true"
+      REDASH_GUNICORN_TIMEOUT: 60
+    networks:
+      - pipeline
+    platform: linux/amd64
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: redah-redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - pipeline
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: redash-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "YKK1KkvPb4ula2HRXlnd7z7n6rVbWKSq"
+    networks:
+      - pipeline
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: redash/nginx:latest
+    container_name: redash-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - pipeline
+    links:
+      - server:redash
+    restart: always
+
+  email:
+    image: maildev/maildev
+    container_name: redah-email
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - pipeline
+    restart: always
+
+  web:
+    tty: true
+    build: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - '8004:8000'
+    volumes:
+      - django_data:/visualisation
+    networks:
+      - pipeline
+
+
+volumes:
+  redash_data:
+  redis_data:
+  postgres_data:
+  django_data:
+
+networks:
+  pipeline:
+    external: true

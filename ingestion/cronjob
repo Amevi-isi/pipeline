@@ -1,0 +1,1 @@
+* * * * * /usr/local/bin/python3 /ingestion/production.py mongodb://172.18.0.2:27017/ database collection_test topic_ingestion kafka1:19092 >> /var/log/cron.log 2>&1

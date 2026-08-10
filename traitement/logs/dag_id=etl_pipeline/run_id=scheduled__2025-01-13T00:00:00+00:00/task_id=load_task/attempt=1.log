@@ -1,0 +1,54 @@
+[2025-01-14T11:24:58.947+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-14T11:24:58.968+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.load_task scheduled__2025-01-13T00:00:00+00:00 [queued]>
+[2025-01-14T11:24:58.981+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.load_task scheduled__2025-01-13T00:00:00+00:00 [queued]>
+[2025-01-14T11:24:58.981+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-14T11:24:58.997+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): load_task> on 2025-01-13 00:00:00+00:00
+[2025-01-14T11:24:59.010+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=4284) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-01-14T11:24:59.009+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'load_task', 'scheduled__2025-01-13T00:00:00+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmp77psmg4c']
+[2025-01-14T11:24:59.012+0000] {standard_task_runner.py:72} INFO - Started process 4288 to run task
+[2025-01-14T11:24:59.012+0000] {standard_task_runner.py:105} INFO - Job 43: Subtask load_task
+[2025-01-14T11:24:59.072+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.load_task scheduled__2025-01-13T00:00:00+00:00 [running]> on host 45eb6cc28065
+[2025-01-14T11:24:59.185+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='load_task' AIRFLOW_CTX_EXECUTION_DATE='2025-01-13T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-13T00:00:00+00:00'
+[2025-01-14T11:24:59.188+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-14T11:24:59.189+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-14T11:24:59.189+0000] {logging_mixin.py:190} INFO - Current task name:load_task state:running start_date:2025-01-14 11:24:58.969808+00:00
+[2025-01-14T11:24:59.190+0000] {logging_mixin.py:190} INFO - Dag name:etl_pipeline and current dag run status:running
+[2025-01-14T11:24:59.193+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-14T11:24:59.203+0000] {logging_mixin.py:190} INFO - Loading data: [2, 4, 6]
+[2025-01-14T11:24:59.205+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-01-14T11:24:59.216+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-14T11:24:59.217+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=load_task, run_id=scheduled__2025-01-13T00:00:00+00:00, execution_date=20250113T000000, start_date=20250114T112458, end_date=20250114T112459
+[2025-01-14T11:24:59.229+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-01-14T11:24:59.230+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-01-14T11:24:59.231+0000] {logging_mixin.py:190} INFO - Dag name:etl_pipeline queued_at:2025-01-14 11:24:49.569099+00:00
+[2025-01-14T11:24:59.232+0000] {logging_mixin.py:190} INFO - Task hostname:45eb6cc28065 operator:PythonOperator
+[2025-01-14T11:24:59.276+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-14T11:24:59.300+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-14T11:24:59.302+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-01-14T13:21:43.471+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-14T13:21:43.518+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.load_task scheduled__2025-01-13T00:00:00+00:00 [queued]>
+[2025-01-14T13:21:43.537+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.load_task scheduled__2025-01-13T00:00:00+00:00 [queued]>
+[2025-01-14T13:21:43.539+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-14T13:21:43.573+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): load_task> on 2025-01-13 00:00:00+00:00
+[2025-01-14T13:21:43.590+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'load_task', 'scheduled__2025-01-13T00:00:00+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpwgpndqp6']
+[2025-01-14T13:21:43.591+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=1416) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-01-14T13:21:43.594+0000] {standard_task_runner.py:105} INFO - Job 40: Subtask load_task
+[2025-01-14T13:21:43.595+0000] {standard_task_runner.py:72} INFO - Started process 1503 to run task
+[2025-01-14T13:21:43.734+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.load_task scheduled__2025-01-13T00:00:00+00:00 [running]> on host 3215871494c5
+[2025-01-14T13:21:43.948+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='load_task' AIRFLOW_CTX_EXECUTION_DATE='2025-01-13T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-13T00:00:00+00:00'
+[2025-01-14T13:21:43.952+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-14T13:21:43.953+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-14T13:21:43.954+0000] {logging_mixin.py:190} INFO - Current task name:load_task state:running start_date:2025-01-14 13:21:43.519186+00:00
+[2025-01-14T13:21:43.955+0000] {logging_mixin.py:190} INFO - Dag name:etl_pipeline and current dag run status:running
+[2025-01-14T13:21:43.957+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-14T13:21:43.986+0000] {logging_mixin.py:190} INFO - Loading data: [2, 4, 6]
+[2025-01-14T13:21:43.987+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-01-14T13:21:44.010+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-14T13:21:44.011+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=load_task, run_id=scheduled__2025-01-13T00:00:00+00:00, execution_date=20250113T000000, start_date=20250114T132143, end_date=20250114T132144
+[2025-01-14T13:21:44.029+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-01-14T13:21:44.032+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-01-14T13:21:44.033+0000] {logging_mixin.py:190} INFO - Dag name:etl_pipeline queued_at:2025-01-14 13:21:29.144550+00:00
+[2025-01-14T13:21:44.035+0000] {logging_mixin.py:190} INFO - Task hostname:3215871494c5 operator:PythonOperator
+[2025-01-14T13:21:44.067+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-14T13:21:44.111+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-14T13:21:44.118+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

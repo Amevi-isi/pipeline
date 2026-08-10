@@ -1,0 +1,26 @@
+[2025-01-16T19:16:03.145+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-16T19:16:03.191+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test.task1 scheduled__2025-01-16T19:15:00+00:00 [queued]>
+[2025-01-16T19:16:03.214+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test.task1 scheduled__2025-01-16T19:15:00+00:00 [queued]>
+[2025-01-16T19:16:03.216+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-16T19:16:03.244+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): task1> on 2025-01-16 19:15:00+00:00
+[2025-01-16T19:16:03.261+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=63155) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-01-16T19:16:03.265+0000] {standard_task_runner.py:72} INFO - Started process 63158 to run task
+[2025-01-16T19:16:03.269+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'test', 'task1', 'scheduled__2025-01-16T19:15:00+00:00', '--job-id', '829', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmp4f6375_c']
+[2025-01-16T19:16:03.274+0000] {standard_task_runner.py:105} INFO - Job 829: Subtask task1
+[2025-01-16T19:16:03.415+0000] {task_command.py:467} INFO - Running <TaskInstance: test.task1 scheduled__2025-01-16T19:15:00+00:00 [running]> on host 3215871494c5
+[2025-01-16T19:16:03.657+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='atou' AIRFLOW_CTX_DAG_ID='test' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2025-01-16T19:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-16T19:15:00+00:00'
+[2025-01-16T19:16:03.659+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-16T19:16:03.660+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-16T19:16:03.662+0000] {logging_mixin.py:190} INFO - Current task name:task1 state:running start_date:2025-01-16 19:16:03.192492+00:00
+[2025-01-16T19:16:03.663+0000] {logging_mixin.py:190} INFO - Dag name:test and current dag run status:running
+[2025-01-16T19:16:03.665+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-16T19:16:03.701+0000] {logging_mixin.py:190} INFO - MongoClient(host=['172.18.0.3:27017'], document_class=dict, tz_aware=False, connect=True)
+[2025-01-16T19:16:03.702+0000] {logging_mixin.py:190} INFO - Database(MongoClient(host=['172.18.0.3:27017'], document_class=dict, tz_aware=False, connect=True), 'test_***')
+[2025-01-16T19:16:03.704+0000] {logging_mixin.py:190} INFO - Collection(Database(MongoClient(host=['172.18.0.3:27017'], document_class=dict, tz_aware=False, connect=True), 'test_***'), '***')
+[2025-01-17T08:17:18.421+0000] {local_task_job_runner.py:228} ERROR - Heartbeat time limit exceeded!
+[2025-01-17T08:17:19.265+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-01-17T08:17:19.338+0000] {process_utils.py:132} INFO - Sending 15 to group 63158. PIDs of all processes in the group: [63158]
+[2025-01-17T08:17:19.348+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 63158
+[2025-01-17T08:17:19.355+0000] {taskinstance.py:3093} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-01-17T08:17:19.366+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-17T08:17:19.523+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=63158, status='terminated', exitcode=2, started='19:16:02') (63158) terminated with exit code 2
